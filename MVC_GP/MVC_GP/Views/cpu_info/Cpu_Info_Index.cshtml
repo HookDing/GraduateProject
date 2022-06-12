@@ -1,0 +1,63 @@
+﻿@model List<MVC_GP.Models.cpu_info>
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="/cpu_info/Cpu_Info_Index" method="post" class="form-inline">
+                    <div class="form-group">
+                        <label class="control-label">品牌名称：</label>
+                        <input class="form-control" type="search" name="brand_name" value="@ViewBag.brand_name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">接口类型：</label>
+                        @Html.DropDownList("cpu_sockets_id", null,"全部",new { @class="form-control"})
+                    </div>
+                    <div class="form-group pull-right">
+                        <input class="btn btn-info" type="submit" value="搜索" />
+                        <a class="btn btn-success" href="/cpu_info/Cpu_Info_Edit">添加</a>
+                    </div>
+                </form>
+                <hr />
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>名称</th>
+                            <th>品牌名称</th>
+                            <th>核心数量</th>
+                            <th>线程数量</th>
+                            <th>基础频率</th>
+                            <th>加速频率</th>
+                            <th>最大功耗</th>
+                            <th>接口类型</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.cpu_id</td>
+                            <td>@item.cpu_Name</td>
+                            <td>@item.brands.brand_name</td>
+                            <td>@item.cpu_core</td>
+                            <td>@item.cpu_threads</td>
+                            <td>@item.cpu_base_frequency</td>
+                            <td>@item.cpu_turbo_frequency</td>
+                            <td>@item.cpu_tdp</td>
+                            <td>@item.cpu_sockets.sockets_name</td>
+                            <td>
+                                @Html.ActionLink("编辑", "Cpu_Info_Edit", new { id = item.cpu_id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("删除", "Cpu_Info_Delete", new { id = item.cpu_id }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>

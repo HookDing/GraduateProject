@@ -1,0 +1,51 @@
+﻿@model List<MVC_GP.Models.mainboard_info>
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="/mainboard_info/Mainboard_Index" method="post" class="form-inline">
+                    <div class="form-group">
+                        <label class="control-label">处理器接口：</label>
+                        @Html.DropDownList("mainboard_sockets_id", null, "全部", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group pull-right">
+                        <input class="btn btn-info" type="submit" value="搜索" />
+                        <a class="btn btn-success" href="/mainboard_info/Mainboard_Edit">添加</a>
+                    </div>
+                </form>
+                <hr />
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>主板编号</th>
+                            <th>主板名称</th>
+                            <th>主板板型</th>
+                            <th>处理器接口</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.mainboard_id</td>
+                            <td>@item.mainboard_name</td>
+                            <td>@item.mainboard_sizeType</td>
+                            <td>@item.cpu_sockets.sockets_name</td>
+                            <td>
+                                @Html.ActionLink("编辑", "Mainboard_Edit", new { id = item.mainboard_id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("删除", "Mainboard_Delete", new { id = item.mainboard_id }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+

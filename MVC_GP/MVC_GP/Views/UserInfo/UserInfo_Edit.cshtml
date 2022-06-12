@@ -1,0 +1,31 @@
+﻿@model MVC_GP.Models.UserInfo
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="/UserInfo/UserInfo_Edit" method="post">
+                    <div class="form-group">
+                        <label class="control-label">编号</label>
+                        <input class="form-control" type="number" disabled name="user_uid" value="@Model.user_uid" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">用户名</label>
+                        <input class="form-control" type="text" name="user_uname" value="@Model.user_uname" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">密码</label>
+                        <input class="form-control" type="text" name="user_password" value="@Model.user_password" />
+                    </div>
+                    <input  type="hidden" name="user_uid" value="@Model.user_uid" />
+                    <input class="btn btn-success" type="submit" value="保存" />
+                    <a class="btn btn-danger" href="/UserInfo/UserInfo_Index">返回</a>
+                </form>
+            </div>
+        </div>
+    </div>

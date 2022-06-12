@@ -1,0 +1,134 @@
+﻿@model List<MVC_GP.Models.Hot>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Soures/css/Project_Home.css">
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title -CAC电脑装机小屋</title>
+    <script type="text/javascript">
+        $(function () {
+        //登录状态
+            if (@ViewBag.UserID != 0) {
+                $("#LogAndReg").hide();
+                $("#myAcount").show();
+            }
+            else {
+                $("#LogAndReg").show();
+                $("#myAcount").hide();
+            }
+            $("#myScrollspy").scrollspy();
+            //消息
+                var msg ='@TempData["msg"]';
+            if (msg != "") {
+                window.alert(msg);
+            }
+            //初始化轮播
+            $(function () {
+                $("#myCarousel").carousel('cycle');
+            });
+        });
+    </script>
+</head>
+<body class="bg-gray-blue">
+
+    <!-- 导航 -->
+    @Html.Partial("Navbar")
+
+    <div class="clearfix"><br><br><br></div>
+
+
+    <!-- 轮播 ( carousel )  -->
+    <div id="myCarousel" class="carousel slide">
+        <!-- 轮播指标 -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+        </ol>
+        <!-- 轮播项目 -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <a href="#">
+                    <img src="~/Soures/img/jpg/5000.jpg">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="~/Soures/img/jpg/封面.jpg">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="~/Soures/img/jpg/5000.jpg">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="~/Soures/img/jpg/封面.jpg">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="~/Soures/img/jpg/5000.jpg">
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- end轮播 -->
+    <br>
+    <div class="container">
+        <div class="container">
+
+            <!-- 大屏推荐 -->
+            <p class="h1 text-info text-center">最近热门</p>
+            <div class="jumbotron" id="Recommend-main">
+                <a href="">
+                    <img src="~/Soures/img/jpg/封面.jpg" class="img img-rounded img-responsive" alt="">
+                </a>
+            </div>
+            <!-- 推荐 -->
+            <div class="row" id="Recommend-3p">
+                <p class="h1 text-info text-center">强烈推荐</p>
+                <br>
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3">
+                        <div class="panel bg-white box-shadow-main">
+                            <div class="panel-heading">
+                                <p class="h2 text-center text-danger">@item.Title</p>
+                            </div>
+                            <div class="panel-body">
+                                <img class="img img-responsive" width="70%" src="~/Soures/img/png/@item.imgurl" alt="">
+                                <h5>
+                                    @item.imgtext
+                                </h5>
+                                <a class="btn btn-info center-block" href="/Project/Project_LearnMore?id=@item.rid">了解更多</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!-- end推荐 -->
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- /.container -->
+    <!-- /.登录与注册窗口 -->
+    @Html.Partial("Regist")
+    @Html.Partial("Login")
+    <script type="text/javascript" src="~/Scripts/Project_Home.js"></script>
+</body>
+</html>
+
+<!-- /.页尾 -->
+@Html.Partial("Footer");

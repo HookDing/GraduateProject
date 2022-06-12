@@ -1,0 +1,48 @@
+﻿@model List<MVC_GP.Models.GPU>
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="/GPU/GPU_Index" method="post" class="form-inline">
+                    <div class="form-group">
+                        <label class="control-label">品牌：</label>
+                        <input class="form-control" type="search" name="gpu_model" value="@ViewBag.gpu_model" />
+                    </div>
+                    <div class="form-group pull-right">
+                        <input class="btn btn-info" type="submit" value="搜索" />
+                        <a class="btn btn-success" href="/GPU/GPU_Edit">添加</a>
+                    </div>
+                </form>
+                <hr />
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>品牌</th>
+                            <th>型号</th>
+                            <th>长度</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.gpu_id</td>
+                            <td>@item.brands.brand_name</td>
+                            <td>@item.gpu_model</td>
+                            <td>@item.gpu_size_lenth</td>
+                            <td>
+                                @Html.ActionLink("编辑", "GPU_Edit", new { id = item.gpu_id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("删除", "GPU_Delete", new { id = item.gpu_id }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>

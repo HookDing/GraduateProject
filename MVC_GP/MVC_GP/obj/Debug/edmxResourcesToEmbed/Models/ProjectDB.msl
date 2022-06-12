@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProjectDBModelStoreContainer" CdmEntityContainer="ProjectDBEntities">
+    <EntitySetMapping Name="brands">
+      <EntityTypeMapping TypeName="ProjectDBModel.brands">
+        <MappingFragment StoreEntitySet="brands">
+          <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+          <ScalarProperty Name="brand_name" ColumnName="brand_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cpu_info">
+      <EntityTypeMapping TypeName="ProjectDBModel.cpu_info">
+        <MappingFragment StoreEntitySet="cpu_info">
+          <ScalarProperty Name="cpu_id" ColumnName="cpu_id" />
+          <ScalarProperty Name="cpu_Name" ColumnName="cpu_Name" />
+          <ScalarProperty Name="cpu_core" ColumnName="cpu_core" />
+          <ScalarProperty Name="cpu_threads" ColumnName="cpu_threads" />
+          <ScalarProperty Name="cpu_base_frequency" ColumnName="cpu_base_frequency" />
+          <ScalarProperty Name="cpu_turbo_frequency" ColumnName="cpu_turbo_frequency" />
+          <ScalarProperty Name="cpu_tdp" ColumnName="cpu_tdp" />
+          <ScalarProperty Name="cpu_brandId" ColumnName="cpu_brandId" />
+          <ScalarProperty Name="cpu_sockets_id" ColumnName="cpu_sockets_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cpu_sockets">
+      <EntityTypeMapping TypeName="ProjectDBModel.cpu_sockets">
+        <MappingFragment StoreEntitySet="cpu_sockets">
+          <ScalarProperty Name="sockets_id" ColumnName="sockets_id" />
+          <ScalarProperty Name="sockets_name" ColumnName="sockets_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="disks">
+      <EntityTypeMapping TypeName="ProjectDBModel.disks">
+        <MappingFragment StoreEntitySet="disks">
+          <ScalarProperty Name="disks_id" ColumnName="disks_id" />
+          <ScalarProperty Name="disks_brand_id" ColumnName="disks_brand_id" />
+          <ScalarProperty Name="disks_model" ColumnName="disks_model" />
+          <ScalarProperty Name="disks_connection" ColumnName="disks_connection" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GPU">
+      <EntityTypeMapping TypeName="ProjectDBModel.GPU">
+        <MappingFragment StoreEntitySet="GPU">
+          <ScalarProperty Name="gpu_id" ColumnName="gpu_id" />
+          <ScalarProperty Name="gpu_brand" ColumnName="gpu_brand" />
+          <ScalarProperty Name="gpu_model" ColumnName="gpu_model" />
+          <ScalarProperty Name="gpu_size_lenth" ColumnName="gpu_size_lenth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mainboard_info">
+      <EntityTypeMapping TypeName="ProjectDBModel.mainboard_info">
+        <MappingFragment StoreEntitySet="mainboard_info">
+          <ScalarProperty Name="mainboard_id" ColumnName="mainboard_id" />
+          <ScalarProperty Name="mainboard_name" ColumnName="mainboard_name" />
+          <ScalarProperty Name="mainboard_sizeType" ColumnName="mainboard_sizeType" />
+          <ScalarProperty Name="mainboard_brand" ColumnName="mainboard_brand" />
+          <ScalarProperty Name="mainboard_sockets_id" ColumnName="mainboard_sockets_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mem">
+      <EntityTypeMapping TypeName="ProjectDBModel.mem">
+        <MappingFragment StoreEntitySet="mem">
+          <ScalarProperty Name="mem_id" ColumnName="mem_id" />
+          <ScalarProperty Name="mem_brand_id" ColumnName="mem_brand_id" />
+          <ScalarProperty Name="mem_capacity" ColumnName="mem_capacity" />
+          <ScalarProperty Name="mem_frenquence" ColumnName="mem_frenquence" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="powers">
+      <EntityTypeMapping TypeName="ProjectDBModel.powers">
+        <MappingFragment StoreEntitySet="powers">
+          <ScalarProperty Name="powers_id" ColumnName="powers_id" />
+          <ScalarProperty Name="powers_brands" ColumnName="powers_brands" />
+          <ScalarProperty Name="powers_warts" ColumnName="powers_warts" />
+          <ScalarProperty Name="powers_size" ColumnName="powers_size" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Talk">
+      <EntityTypeMapping TypeName="ProjectDBModel.Talk">
+        <MappingFragment StoreEntitySet="Talk">
+          <ScalarProperty Name="talk_tid" ColumnName="talk_tid" />
+          <ScalarProperty Name="talk_title" ColumnName="talk_title" />
+          <ScalarProperty Name="talk_content" ColumnName="talk_content" />
+          <ScalarProperty Name="user_uid" ColumnName="user_uid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfo">
+      <EntityTypeMapping TypeName="ProjectDBModel.UserInfo">
+        <MappingFragment StoreEntitySet="UserInfo">
+          <ScalarProperty Name="user_uid" ColumnName="user_uid" />
+          <ScalarProperty Name="user_uname" ColumnName="user_uname" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hot">
+      <EntityTypeMapping TypeName="ProjectDBModel.Hot">
+        <MappingFragment StoreEntitySet="Hot">
+          <ScalarProperty Name="imgtext" ColumnName="imgtext" />
+          <ScalarProperty Name="imgurl" ColumnName="imgurl" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="rid" ColumnName="rid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

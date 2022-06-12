@@ -1,0 +1,49 @@
+﻿@model List<MVC_GP.Models.mem>
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="/mem/Mem_Index" method="post" class="form-inline">
+                    <div class="form-group">
+                        <label class="control-label">内存品牌</label>
+                        @Html.DropDownList("mem_brand_id", null, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group pull-right">
+                        <input class="btn btn-info" type="submit" value="搜索" />
+                        <a class="btn btn-success" href="/mem/Mem_Edit">添加</a>
+                    </div>
+                </form>
+                <hr />
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>内存编号</th>
+                            <th>内存品牌</th>
+                            <th>内存频率</th>
+                            <th>内存容量</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.mem_id</td>
+                            <td>@item.brands.brand_name</td>
+                            <td>@item.mem_frenquence</td>
+                            <td>@item.mem_capacity</td>
+                            <td>
+                                @Html.ActionLink("编辑", "Mem_Edit", new { id = item.mem_id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("删除", "Mem_Delete", new { id = item.mem_id }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>

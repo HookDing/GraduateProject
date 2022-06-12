@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="73a7319c168948989c94fa09022f21be" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="ProjectDBModel.brands" Width="1.5" PointX="4.875" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectDBModel.cpu_info" Width="1.5" PointX="7.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectDBModel.cpu_sockets" Width="1.5" PointX="7.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectDBModel.disks" Width="1.5" PointX="2.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectDBModel.GPU" Width="1.5" PointX="2.125" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectDBModel.mainboard_info" Width="1.5" PointX="4.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectDBModel.mem" Width="1.5" PointX="4.875" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectDBModel.powers" Width="1.5" PointX="2.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectDBModel.Talk" Width="1.5" PointX="7.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectDBModel.UserInfo" Width="1.5" PointX="4.75" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="ProjectDBModel.FK__cpu_info__cpu_br__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectDBModel.FK__disks__disks_bra__3A81B327" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="ProjectDBModel.FK__GPU__gpu_brand__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectDBModel.FK__mainboard__mainb__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectDBModel.FK__mem__mem_brand_i__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectDBModel.FK__powers__powers_b__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectDBModel.FK__cpu_info__cpu_so__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectDBModel.FK__mainboard__mainb__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectDBModel.FK__Talk__user_uid__267ABA7A" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProjectDBModel.Hot" Width="1.5" PointX="2.375" PointY="0.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

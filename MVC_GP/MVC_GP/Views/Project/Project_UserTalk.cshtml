@@ -1,0 +1,67 @@
+﻿@model MVC_GP.Models.Hot
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Soures/css/Project_Home.css">
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title -CAC电脑装机小屋</title>
+    <script type="text/javascript">
+        $(function () {
+        //登录状态
+            if (@ViewBag.UserID != 0) {
+                $("#LogAndReg").hide();
+                $("#myAcount").show();
+            }
+            else {
+                $("#LogAndReg").show();
+                $("#myAcount").hide();
+            }
+            $("#myScrollspy").scrollspy();
+            //消息
+                var msg ='@TempData["msg"]';
+            if (msg != "") {
+                window.alert(msg);
+            }
+        });
+    </script>
+</head>
+<body class="bg-gray-blue">
+
+
+    <!-- 导航 -->
+    @Html.Partial("Navbar")
+
+    <div class="clearfix"><br><br><br></div>
+
+
+    <div class="container">
+        <h1 class="text-center">@ViewBag.Title</h1>
+        <div class="row">
+            <div class="col-md-5">
+                <img class="img img-responsive" width="100%" src="~/Soures/img/png/@Model.imgurl" alt="">
+            </div>
+            <div class="col-md-7">
+                    <h2 class="text-center">@Model.Title</h2>
+                    <br /><br />
+                    <p class="h4">@Model.imgtext</p>
+            </div>
+        </div>
+        <!-- row -->
+    </div>
+    <!-- container -->
+    <!-- /.登录与注册窗口 -->
+    @Html.Partial("Regist")
+    @Html.Partial("Login")
+    <script type="text/javascript" src="~/Scripts/Project_Home.js"></script>
+</body>
+</html>
+
+@Html.Partial("Footer")

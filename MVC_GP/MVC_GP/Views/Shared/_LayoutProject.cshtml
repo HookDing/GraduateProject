@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Soures/css/Project_Home.css">
+    <meta charset="utf-8" />
+    <title>Home</title>
+    <script type="text/javascript">
+        $(function () {
+        //登录状态
+            if (@ViewBag.UserID != 0) {
+                $("#LogAndReg").hide();
+                $("#myAcount").show();
+            }
+            else {
+                $("#LogAndReg").show();
+                $("#myAcount").hide();
+            }
+            $("#myScrollspy").scrollspy();
+            //消息
+                var msg ='@TempData["msg"]';
+            if (msg != "") {
+                window.alert(msg);
+            }
+            //初始化轮播
+            $(function () {
+                $("#myCarousel").carousel('cycle');
+            });
+        });
+    </script>
+</head>
+<body class="bg-gray-blue">
+
+    <!-- 导航 -->
+    <nav class="navbar navbar-fixed-top navbar-inverse bg-black un-radius">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/Project/Project_Home" class="navbar-brand">
+                    <p style="font-size: 40px;">装 <font color="#00ffff">机 </font>小 屋 </p>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar1">
+                <!-- 左侧导航栏 -->
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="active"><a href="/Project/Project_Home">主页</a></li>
+                    <li><a href="/Project/Project_LearnMore">了解更多</a></li>
+                    <li><a href="/Project/Project_Talk">论坛</a></li>
+                </ul>
+                <!-- 右侧导航栏(未登录) -->
+                <ul class="nav navbar-nav navbar-right" id="LogAndReg">
+                    <li><a data-toggle="modal" data-target="#register" href="#">注册</a></li>
+                    <li><a data-toggle="modal" data-target="#login" href="#">登录</a></li>
+                </ul>
+                <!-- 右侧导航栏(已登录) -->
+                <ul class="nav navbar-nav navbar-right" id="myAcount">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding:10px;text-align:center;">
+                            <p class="glyphicon glyphicon-user"></p>
+                            我的账户
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/Project/Project_UserDetail">个人信息</a></li>
+                            @if (@ViewBag.UserID == 1)
+                            {
+                                <li><a class="dropdown-item" href="/Project/Project_Manage">进入管理</a></li>
+                            }
+                            else
+                            {
+                                <li><a class="dropdown-item" href="/Project/Project_UserTalk">我的讨论</a></li>
+                            }
+                            <li><a class="dropdown-item" href="/Project/Project_Logout">注销</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right col-sm-4 hidden-sm" action="/Project/Project_LearnMore" id="navbar-search" autocomplete="off">
+                    <div class="input-group">
+                        <input type="search" class="form-control bg-black" name="Search" id="txtSearch" placeholder="搜索产品">
+                        <span class="input-group-btn ">
+                            <button class="btn btn-default bg-black" type="submit" id="search_gly">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!-- end导航 -->
+    <div class="clearfix"><br><br><br></div>
+
+    @RenderBody()
+
+    <!-- 轮播 ( carousel )  -->
+    <div id="myCarousel" class="carousel slide">
+        <!-- 轮播指标 -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+        </ol>
+        <!-- 轮播项目 -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <a href="#">
+                    <img src="~/Soures/img/jpg/5000.jpg">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="~/Soures/img/jpg/封面.jpg">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="~/Soures/img/jpg/5000.jpg">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="~/Soures/img/jpg/封面.jpg">
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="~/Soures/img/jpg/5000.jpg">
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- end轮播 -->
+    <br>
+    <div class="container">
+        <div class="container">
+
+            <!-- 大屏推荐 -->
+            <p class="h1 text-info text-center">最近热门</p>
+            <div class="jumbotron" id="Recommend-main">
+                <a href="">
+                    <img src="~/Soures/img/jpg/封面.jpg" class="img img-rounded img-responsive" alt="">
+                </a>
+            </div>
+            <!-- 推荐 -->
+            <div class="row" id="Recommend-3p">
+                <p class="h1 text-info text-center">强烈推荐</p>
+                <br>
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3">
+                        <div class="panel bg-white box-shadow-main">
+                            <div class="panel-heading">
+                                <p class="h2 text-center text-danger">@item.Title</p>
+                            </div>
+                            <div class="panel-body">
+
+                                @*<div style="width:100% ;height:100%;">
+
+                                          <img class="img img-responsive" src="~/Soures/img/png/@item.imgurl" alt="">
+                                    </div>
+                                *@
+                                <img class="img img-responsive" width="70%" src="~/Soures/img/png/@item.imgurl" alt="">
+                                <h5>
+                                    @item.imgtext
+                                </h5>
+                                <a class="btn btn-info center-block" href="/Project/Project_LearnMore?id=@item.rid">了解更多</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!-- end推荐 -->
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- /.container -->
+    <!-- 注册窗口 -->
+    <div id="register" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-title">
+                    <h1 class="text-center">注册</h1>
+                </div>
+                <div class="modal-body">
+                    <form action="/Project/Project_Regist" method="post" autocomplete="off">
+                        <div class="form-group">
+                            <label for="">用户名</label>
+                            <input class="form-control" id="txtRegName" name="user_uname" autofocus type="text" placeholder="6-15位字母或数字">
+                        </div>
+                        <div class="form-group">
+                            <label for="">密码</label>
+                            <input class="form-control" id="txtRegPwd" name="user_password" type="password" placeholder="至少6位字母或数字">
+                        </div>
+                        <div class="form-group">
+                            <label for="">再次输入密码</label>
+                            <input class="form-control" id="txtRegPwd1" type="password" placeholder="至少6位字母或数字">
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary" type="submit">提交</button>
+                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                        </div>
+                        <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 登录窗口 -->
+    <div id="login" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-title">
+                    <h1 class="text-center">登录</h1>
+                </div>
+                <div class="modal-body">
+                    <form action="/Project/Project_Login" method="post" autocomplete="off">
+                        <div class="form-group">
+                            <label for="">用户名</label>
+                            <input class="form-control" autofocus name="user_uname" type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">密码</label>
+                            <input class="form-control" name="user_password" type="password" required>
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary" type="submit">登录</button>
+                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                        </div>
+                        <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">还没有账号？点我注册</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/Scripts/Project_Home.js"></script>
+</body>
+</html>
+
+<!--采用container-fluid，使得整个页尾的宽度为100%，并设置它的背景色-->
+<footer class="container-fluid foot-wrap">
+    <!--采用container，使得页尾内容居中 -->
+    <div class="container">
+        <div class="row">
+            <div class="row-content col-lg-12 col-sm-12 col-xs-12 text-center">
+                <h3></h3>
+                <ul class="list-inline">
+                    <li><a href="#">用户手册</a></li>
+                    <li><a href="#">关于我们</a></li>
+                    <li>QQ群:<a>12345678</a></li>
+                    <li>微信群：<a>12345678</a></li>
+                    <li>电话：<a>0745-1234567</a></li>
+                    <li>邮箱：<a>HookDing02@("@")outlook.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--/.row -->
+    </div>
+    <!--/.container-->
+    <p align="center" style="margin-top: 20px;color:#878B91;">
+        Copyright &copy;2022 HookDing
+    </p>
+</footer>

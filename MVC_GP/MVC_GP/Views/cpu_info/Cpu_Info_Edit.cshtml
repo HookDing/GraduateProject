@@ -1,0 +1,55 @@
+﻿@model MVC_GP.Models.cpu_info
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="Cpu_Info_Edit" method="post">
+                    @*<div class="form-group">
+                        <label class="control-label">编号</label>
+                        <input class="form-control" type="number" disabled name="cpu_id" value="@Model.cpu_id" />
+                    </div>*@
+                    <div class="form-group">
+                        <label class="control-label">名称</label>
+                        <input class="form-control" type="text" name="cpu_Name" value="@Model.cpu_Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">品牌名称</label>
+                        @Html.DropDownList("cpu_brandId", null, "--请选择--", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">核心数量</label>
+                        <input class="form-control" type="number" name="cpu_core" value="@Model.cpu_core" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">线程数量</label>
+                        <input class="form-control" type="number" name="cpu_threads" value="@Model.cpu_threads" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">基础频率</label>
+                        <input class="form-control" type="number" name="cpu_base_frequency" value="@Model.cpu_base_frequency" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">加速频率</label>
+                        <input class="form-control" type="number" name="cpu_turbo_frequency" value="@Model.cpu_turbo_frequency" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">最大功耗</label>
+                        <input class="form-control" type="number" name="cpu_tdp" value="@Model.cpu_tdp" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">接口类型</label>
+                        @Html.DropDownList("cpu_sockets_id", null, "全部", new { @class = "form-control" })
+                    </div>
+                <input class="form-control" type="hidden" name="cpu_id" value="@Model.cpu_id" />
+                <input class="btn btn-success" type="submit" value="保存" />
+                <a class="btn btn-danger" href="/cpu_info/Cpu_Info_Index">返回</a>
+                </form>
+            </div>
+        </div>
+    </div>

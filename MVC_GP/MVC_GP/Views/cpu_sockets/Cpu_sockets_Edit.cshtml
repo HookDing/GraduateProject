@@ -1,0 +1,27 @@
+﻿@model MVC_GP.Models.cpu_sockets
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="/cpu_sockets/Cpu_sockets_Edit" method="post">
+                    <div class="form-group">
+                        <label class="control-label">编号</label>
+                        <input class="form-control" type="number" disabled name="sockets_id" value="@Model.sockets_id" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">名称</label>
+                        <input class="form-control" type="text" name="sockets_name" value="@Model.sockets_name" />
+                    </div>
+                    <input type="hidden" name="sockets_id" value="@Model.sockets_id" />
+                    <input class="btn btn-success" type="submit" value="保存" />
+                    <a class="btn btn-danger" href="/cpu_sockets/Cpu_sockets_Index">返回</a>
+                </form>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,34 @@
+﻿@model MVC_GP.Models.Talk
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="/Talk/Talk_Edit" method="post">
+                    <div class="form-group">
+                        <label class="control-label">讨论编号</label>
+                        <input class="form-control" type="text" name="talk_tid" value="@Model.talk_tid" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">发言用户</label>
+                        @Html.DropDownList("user_uid", null, "--请选择--", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">讨论标题</label>
+                        <input class="form-control" type="text" name="talk_title" value="@Model.talk_title" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">讨论内容</label>
+                        <input class="form-control" type="text" name="talk_content" value="@Model.talk_content" />
+                    </div>
+                    <input class="btn btn-success" type="submit" value="保存" />
+                    <a class="btn btn-danger" href="/Talk/Talk_Index">返回</a>
+                </form>
+            </div>
+        </div>
+    </div>

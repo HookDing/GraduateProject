@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="brands">
+    <Key>
+      <PropertyRef Name="brand_id" />
+    </Key>
+    <Property Name="brand_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="brand_name" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cpu_info">
+    <Key>
+      <PropertyRef Name="cpu_id" />
+    </Key>
+    <Property Name="cpu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cpu_Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cpu_core" Type="int" Nullable="false" />
+    <Property Name="cpu_threads" Type="int" Nullable="false" />
+    <Property Name="cpu_base_frequency" Type="numeric" Precision="4" Scale="2" Nullable="false" />
+    <Property Name="cpu_turbo_frequency" Type="numeric" Precision="4" Scale="2" Nullable="false" />
+    <Property Name="cpu_tdp" Type="int" Nullable="false" />
+    <Property Name="cpu_brandId" Type="int" />
+    <Property Name="cpu_sockets_id" Type="int" />
+  </EntityType>
+  <EntityType Name="cpu_sockets">
+    <Key>
+      <PropertyRef Name="sockets_id" />
+    </Key>
+    <Property Name="sockets_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sockets_name" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="disks">
+    <Key>
+      <PropertyRef Name="disks_id" />
+    </Key>
+    <Property Name="disks_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="disks_brand_id" Type="int" />
+    <Property Name="disks_model" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="disks_connection" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="GPU">
+    <Key>
+      <PropertyRef Name="gpu_id" />
+    </Key>
+    <Property Name="gpu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gpu_brand" Type="int" />
+    <Property Name="gpu_model" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="gpu_size_lenth" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hot">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="imgurl" Type="text" Nullable="false" />
+    <Property Name="imgtext" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="mainboard_info">
+    <Key>
+      <PropertyRef Name="mainboard_id" />
+    </Key>
+    <Property Name="mainboard_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mainboard_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="mainboard_sizeType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="mainboard_brand" Type="int" />
+    <Property Name="mainboard_sockets_id" Type="int" />
+  </EntityType>
+  <EntityType Name="mem">
+    <Key>
+      <PropertyRef Name="mem_id" />
+    </Key>
+    <Property Name="mem_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mem_brand_id" Type="int" />
+    <Property Name="mem_capacity" Type="int" Nullable="false" />
+    <Property Name="mem_frenquence" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="powers">
+    <Key>
+      <PropertyRef Name="powers_id" />
+    </Key>
+    <Property Name="powers_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="powers_brands" Type="int" />
+    <Property Name="powers_warts" Type="int" Nullable="false" />
+    <Property Name="powers_size" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Talk">
+    <Key>
+      <PropertyRef Name="talk_tid" />
+    </Key>
+    <Property Name="talk_tid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="talk_title" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="talk_content" Type="text" Nullable="false" />
+    <Property Name="user_uid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="user_uid" />
+    </Key>
+    <Property Name="user_uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_uname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_password" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__cpu_info__cpu_br__2F10007B">
+    <End Role="brands" Type="Self.brands" Multiplicity="0..1" />
+    <End Role="cpu_info" Type="Self.cpu_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="brands">
+        <PropertyRef Name="brand_id" />
+      </Principal>
+      <Dependent Role="cpu_info">
+        <PropertyRef Name="cpu_brandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cpu_info__cpu_so__300424B4">
+    <End Role="cpu_sockets" Type="Self.cpu_sockets" Multiplicity="0..1" />
+    <End Role="cpu_info" Type="Self.cpu_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cpu_sockets">
+        <PropertyRef Name="sockets_id" />
+      </Principal>
+      <Dependent Role="cpu_info">
+        <PropertyRef Name="cpu_sockets_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__disks__disks_bra__3C69FB99">
+    <End Role="brands" Type="Self.brands" Multiplicity="0..1" />
+    <End Role="disks" Type="Self.disks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="brands">
+        <PropertyRef Name="brand_id" />
+      </Principal>
+      <Dependent Role="disks">
+        <PropertyRef Name="disks_brand_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GPU__gpu_brand__398D8EEE">
+    <End Role="brands" Type="Self.brands" Multiplicity="0..1" />
+    <End Role="GPU" Type="Self.GPU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="brands">
+        <PropertyRef Name="brand_id" />
+      </Principal>
+      <Dependent Role="GPU">
+        <PropertyRef Name="gpu_brand" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__mainboard__mainb__32E0915F">
+    <End Role="brands" Type="Self.brands" Multiplicity="0..1" />
+    <End Role="mainboard_info" Type="Self.mainboard_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="brands">
+        <PropertyRef Name="brand_id" />
+      </Principal>
+      <Dependent Role="mainboard_info">
+        <PropertyRef Name="mainboard_brand" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__mainboard__mainb__33D4B598">
+    <End Role="cpu_sockets" Type="Self.cpu_sockets" Multiplicity="0..1" />
+    <End Role="mainboard_info" Type="Self.mainboard_info" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cpu_sockets">
+        <PropertyRef Name="sockets_id" />
+      </Principal>
+      <Dependent Role="mainboard_info">
+        <PropertyRef Name="mainboard_sockets_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__mem__mem_brand_i__36B12243">
+    <End Role="brands" Type="Self.brands" Multiplicity="0..1" />
+    <End Role="mem" Type="Self.mem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="brands">
+        <PropertyRef Name="brand_id" />
+      </Principal>
+      <Dependent Role="mem">
+        <PropertyRef Name="mem_brand_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__powers__powers_b__3F466844">
+    <End Role="brands" Type="Self.brands" Multiplicity="0..1" />
+    <End Role="powers" Type="Self.powers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="brands">
+        <PropertyRef Name="brand_id" />
+      </Principal>
+      <Dependent Role="powers">
+        <PropertyRef Name="powers_brands" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Talk__user_uid__267ABA7A">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+    <End Role="Talk" Type="Self.Talk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="user_uid" />
+      </Principal>
+      <Dependent Role="Talk">
+        <PropertyRef Name="user_uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjectDBModelStoreContainer">
+    <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cpu_info" EntityType="Self.cpu_info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cpu_sockets" EntityType="Self.cpu_sockets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="disks" EntityType="Self.disks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GPU" EntityType="Self.GPU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hot" EntityType="Self.Hot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mainboard_info" EntityType="Self.mainboard_info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mem" EntityType="Self.mem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="powers" EntityType="Self.powers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Talk" EntityType="Self.Talk" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__cpu_info__cpu_br__2F10007B" Association="Self.FK__cpu_info__cpu_br__2F10007B">
+      <End Role="brands" EntitySet="brands" />
+      <End Role="cpu_info" EntitySet="cpu_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cpu_info__cpu_so__300424B4" Association="Self.FK__cpu_info__cpu_so__300424B4">
+      <End Role="cpu_sockets" EntitySet="cpu_sockets" />
+      <End Role="cpu_info" EntitySet="cpu_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK__disks__disks_bra__3C69FB99" Association="Self.FK__disks__disks_bra__3C69FB99">
+      <End Role="brands" EntitySet="brands" />
+      <End Role="disks" EntitySet="disks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GPU__gpu_brand__398D8EEE" Association="Self.FK__GPU__gpu_brand__398D8EEE">
+      <End Role="brands" EntitySet="brands" />
+      <End Role="GPU" EntitySet="GPU" />
+    </AssociationSet>
+    <AssociationSet Name="FK__mainboard__mainb__32E0915F" Association="Self.FK__mainboard__mainb__32E0915F">
+      <End Role="brands" EntitySet="brands" />
+      <End Role="mainboard_info" EntitySet="mainboard_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK__mainboard__mainb__33D4B598" Association="Self.FK__mainboard__mainb__33D4B598">
+      <End Role="cpu_sockets" EntitySet="cpu_sockets" />
+      <End Role="mainboard_info" EntitySet="mainboard_info" />
+    </AssociationSet>
+    <AssociationSet Name="FK__mem__mem_brand_i__36B12243" Association="Self.FK__mem__mem_brand_i__36B12243">
+      <End Role="brands" EntitySet="brands" />
+      <End Role="mem" EntitySet="mem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__powers__powers_b__3F466844" Association="Self.FK__powers__powers_b__3F466844">
+      <End Role="brands" EntitySet="brands" />
+      <End Role="powers" EntitySet="powers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Talk__user_uid__267ABA7A" Association="Self.FK__Talk__user_uid__267ABA7A">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="Talk" EntitySet="Talk" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

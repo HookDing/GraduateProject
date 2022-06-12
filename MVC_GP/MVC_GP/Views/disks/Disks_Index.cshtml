@@ -1,0 +1,49 @@
+﻿@model List<MVC_GP.Models.disks>
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="/disks/Disks_Index" method="post" class="form-inline">
+                    <div class="form-group">
+                        <label class="control-label">搜索型号：</label>
+                        <input class="form-control" type="search" name="disks_model" value="@ViewBag.disks_model" />
+                    </div>
+                    <div class="form-group pull-right">
+                        <input class="btn btn-info" type="submit" value="搜索" />
+                        <a class="btn btn-success" href="/disks/Disks_Edit">添加</a>
+                    </div>
+                </form>
+                <hr />
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>硬盘编号</th>
+                            <th>硬盘品牌</th>
+                            <th>硬盘型号</th>
+                            <th>硬盘协议</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.disks_id</td>
+                            <td>@item.brands.brand_name</td>
+                            <td>@item.disks_model</td>
+                            <td>@item.disks_connection</td>
+                            <td>
+                                @Html.ActionLink("编辑", "Disks_Edit", new { id = item.disks_id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("删除", "Disks_Delete", new { id = item.disks_id }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,53 @@
+﻿@model List<MVC_GP.Models.powers>
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="/powers/Powers_Index" method="post" class="form-inline">
+                    <div class="form-group">
+                        <label class="control-label">品牌</label>
+                        @Html.DropDownList("powers_brands", null, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">尺寸</label>
+                        <input class="form-control" type="search" name="powers_size" value="@ViewBag.powers_size" />
+                    </div>
+                    <div class="form-group pull-right">
+                        <input class="btn btn-info" type="submit" value="搜索" />
+                        <a class="btn btn-success" href="/powers/Powers_Edit">添加</a>
+                    </div>
+                </form>
+                <hr />
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>电源编号</th>
+                            <th>电源名称</th>
+                            <th>电源标称最大负载</th>
+                            <th>电源尺寸</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.powers_id</td>
+                            <td>@item.brands.brand_name</td>
+                            <td>@item.powers_warts</td>
+                            <td>@item.powers_size</td>
+                            <td>
+                                @Html.ActionLink("编辑", "Powers_Edit", new { id = item.powers_id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("删除", "Powers_Delete", new { id = item.powers_id }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>

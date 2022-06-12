@@ -1,0 +1,35 @@
+﻿@model MVC_GP.Models.disks
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="/disks/Disks_Edit" method="post">
+                    <div class="form-group">
+                        <label class="control-label">编号：</label>
+                        <input class="form-control" type="text" disabled name="disks_id" value="@Model.disks_id" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">连接方式</label>
+                        <input class="form-control" type="text" name="disks_connection" value="@Model.disks_connection" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">硬盘品牌：</label>
+                        @Html.DropDownList("disks_brand_id", null, "--请选择--", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">硬盘型号：</label>
+                        <input class="form-control" type="text" name="disks_model" value="@Model.disks_model" />
+                    </div>
+                    <input type="hidden" name="disks_id" value="@Model.disks_id" />
+                    <input class="btn btn-success" type="submit" value="保存" />
+                    <a class="btn btn-danger" href="/disks/Disks_Index">返回</a>
+                </form>
+            </div>
+        </div>
+    </div>

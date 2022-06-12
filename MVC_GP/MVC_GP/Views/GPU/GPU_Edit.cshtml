@@ -1,0 +1,35 @@
+﻿@model MVC_GP.Models.GPU
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="/GPU/GPU_Edit" method="post">
+                    <div class="form-group">
+                        <label class="control-label">显卡编号：</label>
+                        <input class="form-control" disabled type="number" name="gpu_id" value="@Model.gpu_id" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">显卡品牌：</label>
+                        @Html.DropDownList("gpu_brand", null, "--请选择--", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">显卡型号：</label>
+                        <input class="form-control" type="text" name="gpu_model" value="@Model.gpu_model" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">显卡长度</label>
+                        <input class="form-control" type="text" name="gpu_size_lenth" value="@Model.gpu_size_lenth" />
+                    </div>
+                    <input type="hidden" name="gpu_id" value="@Model.gpu_id" />
+                    <input class="btn btn-success" type="submit" value="保存" />
+                    <a class="btn btn-danger" href="/GPU/GPU_Index">返回</a>
+                </form>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,55 @@
+﻿
+@model List<MVC_GP.Models.brands>
+
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                @if (string.IsNullOrEmpty(ViewBag.Erroy))
+                {
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>错误!</strong> @ViewBag.Erroy
+                    </div>
+                }
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <hr />
+                <form action="/brands/Brands_Index" method="post" class="form-inline">
+                    <div class="form-group">
+                        <label class="control-label">搜索品牌名称：</label>
+                        <input class="form-control" type="search" name="brand_name" value="@ViewBag.brand_name" />
+                    </div>
+                    <div class="form-group pull-right">
+
+                        <input class="btn btn-info" type="submit" value="搜索" />
+                        <a class="btn btn-success" href="/brands/Brands_Edit">添加</a>
+                    </div>
+                </form>
+                <hr />
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>名称</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.brand_id</td>
+                            <td>@item.brand_name</td>
+                            <td>
+                                @Html.ActionLink("编辑", "Brands_Edit", new { id = item.brand_id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("删除", "Brands_Delete", new { id = item.brand_id }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>

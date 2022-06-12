@@ -1,0 +1,93 @@
+﻿@model List<MVC_GP.Models.Hot>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Soures/css/Project_Home.css">
+    <meta charset="utf-8" />
+    <title>Home</title>
+    <script type="text/javascript">
+        $(function () {
+        //登录状态
+            if (@ViewBag.UserID != 0) {
+                $("#LogAndReg").hide();
+                $("#myAcount").show();
+            }
+            else {
+                $("#LogAndReg").show();
+                $("#myAcount").hide();
+            }
+            $("#myScrollspy").scrollspy();
+            //消息
+                var msg ='@TempData["msg"]';
+            if (msg != "") {
+                window.alert(msg);
+            }
+            //初始化轮播
+            $(function () {
+                $("#myCarousel").carousel('cycle');
+            });
+        });
+    </script>
+</head>
+<body class="bg-gray-blue">
+
+    <!-- 导航 -->
+    <nav class="navbar navbar-fixed-top navbar-inverse bg-black un-radius">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/Project/Project_Home" class="navbar-brand">
+                    <p style="font-size: 40px;">装 <font color="#00ffff">机 </font>小 屋 </p>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar1">
+                <!-- 左侧导航栏 -->
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="active"><a href="/Project/Project_Manage">主页</a></li>
+                    <li><a href="/brands/Brands_Index">主板</a></li>
+                    <li><a href="/cpu_info/Cpu_Info_Index">处理器</a></li>
+                    <li><a href="/cpu_sockets/Cpu_sockets_Index">处理器接口</a></li>
+                    <li><a href="/disks/Disks_Index">硬盘</a></li>
+                    <li><a href="/GPU/GPU_Index">显卡</a></li>
+                    <li><a href="/Hot/Hot_Index">热门</a></li>
+                    <li><a href="/mainboard_info/Mainboard_Index">主板</a></li>
+                    <li><a href="/mem/Mem_Index">内存</a></li>
+                    <li><a href="/powers/Powers_Index">电源</a></li>
+                    <li><a href="/Talk/Talk_Index">论坛</a></li>
+                    <li><a href="/UserInfo/UserInfo_Index">用户</a></li>
+                </ul>
+                <!-- 右侧导航栏 -->
+                <ul class="nav navbar-nav navbar-right" id="myAcount">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding:10px;text-align:center;">
+                            <p class="glyphicon glyphicon-user"></p>
+                            我的账户
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/Project/Project_UserDetail?id=@ViewBag.UserID">个人信息</a></li>
+                            <li><a class="dropdown-item" href="/Project/Project_Logout">注销</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</body>
+</html>
+
+@Html.Partial("Footer")
