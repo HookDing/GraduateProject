@@ -1,2 +1,2 @@
 # Projects
-Graduate Project
+This is my Graduate Project in College
